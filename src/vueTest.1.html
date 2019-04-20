@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+    <script src="https://unpkg.com/vue"></script>
+
+    <div id="app">
+      <hello :foo="foo"></hello>
+      <p>
+        bar: {{ bar }}
+      </p>
+      <button @click="updateBar">
+        Update Bar; Foo is unaffected.
+      </button>
+    </div>
+  <script>
+      
+Vue.component('hello', {
+  functional: true,
+  render: function(createElement, context) {
+
+    console.log('Rendering Foo')
+    return createElement({
+      template: context.props.foo
+    })
+  },
+  props:['foo'],
+  
+})
+
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      foo: '<p>foo</p>',
+      bar: 'bar'
+    }
+  },
+  methods: {
+    updateBar: function() {
+      this.bar = 'a random number: ' + Math.round(Math.random() * 10)
+    }
+  }
+})
+
+   
+  </script>
+</body>
+</html>

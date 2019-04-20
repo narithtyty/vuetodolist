@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <blog-post
+        v-for=" (post,index) in posts"
+        v-bind:key="index"
+        v-bind:post="post"
+  ></blog-post>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    /*  
+    Vue.component('blog-post', {
+    props: ['post'],
+    template: `
+        <div class="blog-post">
+        <h3>{{ post.title }}</h3>
+        <div v-html="post.content"></div>
+        </div>
+    `
+    })
+    */  
+    new Vue({ 
+            el: '#app' ,
+            data: {
+                posts: [
+                { id: 1, title: 'My journey with Vue' },
+                { id: 2, title: 'Blogging with Vue' },
+                { id: 3, title: 'Why Vue is so fun' }
+            ]
+            },
+            components: {
+                'blog-post' : {
+                    props: ['post'],
+                    template: `
+                        <div class="blog-post">
+                        <h3>{{ post.title }}</h3>
+                        <div v-html="post.content"></div>
+                        </div>
+                    `
+                    }
+            }
+    })
+
+   
+  </script>
+</body>
+</html>
